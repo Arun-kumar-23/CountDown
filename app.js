@@ -1,0 +1,32 @@
+const Days = document.getElementById("days");
+const Hours = document.getElementById("hours");
+const Mins = document.getElementById("mins");
+const Seconds = document.getElementById("seconds");
+
+const newYear = "01 jan 2022";
+
+function count(){
+    const newYearDate = new Date(newYear);
+    const currentDate = new Date();
+
+    const totalseconds = (newYearDate - currentDate)/1000;
+
+    const days = Math.floor(totalseconds/3600/24);
+    const hours = Math.floor(totalseconds/3600)%24;
+    const mins = Math.floor(totalseconds/60)%24;
+    const seconds = Math.floor(totalseconds%60);
+
+    // console.log(days,hours,mins,seconds)
+    Days.innerHTML = days;
+    Hours.innerHTML =formatTime(hours);
+    Mins.innerHTML= formatTime(mins);
+    Seconds.innerHTML = formatTime(seconds);
+
+}
+
+function formatTime(time){
+    return time<10 ? `0${time}`:time;
+}
+count();
+
+setInterval(count, 1000)
